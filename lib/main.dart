@@ -48,9 +48,29 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Text(
-              "Result :",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "Result :",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Container(
+                  width: 50,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.black))),
+                )
+              ],
+            ),
+            SizedBox(
+              width: 20,
             ),
             TextField(
               decoration: InputDecoration(
@@ -62,44 +82,50 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: Text("Enter Second Number"),
               ),
             ),
-
-            ElevatedButton(
-
-              child: Text('ADD'),
-              style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-          ),
-          onPressed: () {},
-          ),          
-            ElevatedButton(
-              child: Text('SUBSTRACT'),
-              style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-          ),
-          onPressed: () {},
-          ),          
-            ElevatedButton(
-              child: Text('MULTIPLY'),
-              style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-          ),
-          onPressed: () {},
-          ),          
-            ElevatedButton(
-              child: Text('DIVIDE'),
-              style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-          ),
-          onPressed: () {},
-          ),          
-        ],
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  child: Text('ADD'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                  ),
+                  onPressed: () {},
+                ),
+                ElevatedButton(
+                  child: Text('SUBSTRACT'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                  ),
+                  onPressed: () {},
+                ),
+                ElevatedButton(
+                  child: Text('MULTIPLY'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                  ),
+                  onPressed: () {},
+                ),
+                ElevatedButton(
+                  child: Text('DIVIDE'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
         ),
       ),
-    //   floatingActionButton: FloatingActionButton(
-    //     onPressed: _incrementCounter,
-    //     tooltip: 'Increment',
-    //     child: const Icon(Icons.add),
-    //   ), // This trailing comma makes auto-formatting nicer for build methods.
+      //   floatingActionButton: FloatingActionButton(
+      //     onPressed: _incrementCounter,
+      //     tooltip: 'Increment',
+      //     child: const Icon(Icons.add),
+      //   ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
