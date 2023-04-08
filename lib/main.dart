@@ -1,48 +1,63 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+main(){
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home:MyApp()
+  ));
 }
 
-class MyApp extends StatelessWidget {
+
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Calculator'),
-    );
-  }
+  State<MyApp> createState() => _MyWidgetState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _MyWidgetState extends State<MyApp> {
+    TextEditingController controller1 = TextEditingController();
+    TextEditingController controller2 = TextEditingController();
+    int? result=0,num1=0,num2=0;
+    hapus(){
+      setState(() {
+        result = 0;
+      });
+    }
+    add(){
+      setState(() {
+        num1=int.parse(controller1.text);
+        num2=int.parse(controller2.text);
+        result = num1! + num2!;
+      });
+    }
+    substract(){
+      setState(() {
+        num1=int.parse(controller1.text);
+        num2=int.parse(controller2.text);
+        result = num1! - num2!;
+      });
+    }
+    multiply(){
+      setState(() {
+        num1=int.parse(controller1.text);
+        num2=int.parse(controller2.text);
+        result = num1! * num2!;
+      });
+    }
+    divide(){
+      setState(() {
+        num1=int.parse(controller1.text);
+        num2=int.parse(controller2.text);
+        result = num1! ~/ num2!;
+      });
+    }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Calculator'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -51,33 +66,37 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  "Result :",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                  ElevatedButton(
+                  child: Text('Clear'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
                   ),
+                  onPressed: () {
+                    hapus();
+                  },
                 ),
                 SizedBox(
                   width: 10,
                 ),
-                Container(
-                  width: 50,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.black))),
-                )
+                Text(
+                  "Result :  $result" ,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
               ],
             ),
             SizedBox(
               width: 20,
             ),
             TextField(
+              controller: controller1,
               decoration: InputDecoration(
                 label: Text("Enter First Number"),
               ),
             ),
             TextField(
+                controller: controller2,
               decoration: InputDecoration(
                 label: Text("Enter Second Number"),
               ),
@@ -93,28 +112,45 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    add();
+                    controller1.clear();
+                    controller2.clear();
+                  },
                 ),
                 ElevatedButton(
                   child: Text('SUBSTRACT'),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    substract();
+                    controller1.clear();
+                    controller2.clear();
+
+                  },
                 ),
                 ElevatedButton(
                   child: Text('MULTIPLY'),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    multiply();
+                    controller1.clear();
+                    controller2.clear();
+                  },
                 ),
                 ElevatedButton(
                   child: Text('DIVIDE'),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    divide();
+                    controller1.clear();
+                    controller2.clear();
+                  },
                 ),
               ],
             ),
@@ -129,3 +165,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
