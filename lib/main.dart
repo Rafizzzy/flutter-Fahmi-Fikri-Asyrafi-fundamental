@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-main(){
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home:MyApp()
-  ));
+main() {
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
 }
-
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -16,42 +13,46 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyApp> {
-    TextEditingController controller1 = TextEditingController();
-    TextEditingController controller2 = TextEditingController();
-    int? result=0,num1=0,num2=0;
-    hapus(){
-      setState(() {
-        result = 0;
-      });
-    }
-    add(){
-      setState(() {
-        num1=int.parse(controller1.text);
-        num2=int.parse(controller2.text);
-        result = num1! + num2!;
-      });
-    }
-    substract(){
-      setState(() {
-        num1=int.parse(controller1.text);
-        num2=int.parse(controller2.text);
-        result = num1! - num2!;
-      });
-    }
-    multiply(){
-      setState(() {
-        num1=int.parse(controller1.text);
-        num2=int.parse(controller2.text);
-        result = num1! * num2!;
-      });
-    }
-    divide(){
-      setState(() {
-        num1=int.parse(controller1.text);
-        num2=int.parse(controller2.text);
-        result = num1! ~/ num2!;
-      });
-    }
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+  int? result = 0, num1 = 0, num2 = 0;
+  hapus() {
+    setState(() {
+      result = 0;
+    });
+  }
+
+  add() {
+    setState(() {
+      num1 = int.parse(controller1.text);
+      num2 = int.parse(controller2.text);
+      result = num1! + num2!;
+    });
+  }
+
+  substract() {
+    setState(() {
+      num1 = int.parse(controller1.text);
+      num2 = int.parse(controller2.text);
+      result = num1! - num2!;
+    });
+  }
+
+  multiply() {
+    setState(() {
+      num1 = int.parse(controller1.text);
+      num2 = int.parse(controller2.text);
+      result = num1! * num2!;
+    });
+  }
+
+  divide() {
+    setState(() {
+      num1 = int.parse(controller1.text);
+      num2 = int.parse(controller2.text);
+      result = num1! ~/ num2!;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +67,7 @@ class _MyWidgetState extends State<MyApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                  ElevatedButton(
+                ElevatedButton(
                   child: Text('Clear'),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue,
@@ -79,7 +80,7 @@ class _MyWidgetState extends State<MyApp> {
                   width: 10,
                 ),
                 Text(
-                  "Result :  $result" ,
+                  "Result :  $result",
                 ),
                 SizedBox(
                   width: 10,
@@ -90,13 +91,23 @@ class _MyWidgetState extends State<MyApp> {
               width: 20,
             ),
             TextField(
+              keyboardType: TextInputType.number, // hanya menerima input angka
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter
+                    .digitsOnly // memfilter inputan hanya digit/angka
+              ],
               controller: controller1,
               decoration: InputDecoration(
                 label: Text("Enter First Number"),
               ),
             ),
             TextField(
-                controller: controller2,
+              keyboardType: TextInputType.number, // hanya menerima input angka
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter
+                    .digitsOnly // memfilter inputan hanya digit/angka
+              ],
+              controller: controller2,
               decoration: InputDecoration(
                 label: Text("Enter Second Number"),
               ),
@@ -127,7 +138,6 @@ class _MyWidgetState extends State<MyApp> {
                     substract();
                     controller1.clear();
                     controller2.clear();
-
                   },
                 ),
                 ElevatedButton(
@@ -165,4 +175,3 @@ class _MyWidgetState extends State<MyApp> {
     );
   }
 }
-
